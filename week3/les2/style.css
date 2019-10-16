@@ -1,0 +1,12 @@
+a{
+    text-decoration: none;
+}
+
+.active{
+    color:red;
+}
+
+textarea{
+    width: 700px;
+    height: 500px;
+}
