@@ -1,6 +1,7 @@
 <?php
     // set cookie value
-    setcookie('user', $_POST["name"], time()+ (20), '/'); 
+    setcookie('user', $_POST['name'], time() + 20, '/');
+    
     // '/' means cookie is available on entire website
 ?>  
 <!DOCTYPE html>
@@ -17,8 +18,40 @@
             echo '<h1>Hallo, '.$_COOKIE['user']. ' from cookie</h1>';
         }
         else{
-            echo '<h1>Hallo, '.$_COOKIE['user'].'</h1>';
+            echo '<h1>Hallo, '.$_POST['name'].'</h1>';
         }
     ?>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

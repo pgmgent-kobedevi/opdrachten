@@ -1,58 +1,63 @@
-<!DOCTYPE html>
+<?php
+
+    if( isset($_POST['save'])) {
+        $rows = [];
+        foreach($_POST['fields'] as $field) {
+            $rows[] = implode(',', $field);
+        }
+        file_put_contents('./csv/users.csv', implode(PHP_EOL, $rows));
+        
+    }
+
+    $rows = explode(PHP_EOL, file_get_contents('./csv/users.csv'));
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+    table {border-collapse: collapse; }
+    tr:nth-child(odd) { background: #EEE;}
+    tr td { padding: 5px;  }
+    </style>
 </head>
 <body>
+<form method="POST">
+<table>
     <?php
-        // //other way
-        // $string_users = file_get_contents('users.csv');
-        // // preg_split newline
-        // $array_users = explode("/(\r\n|\n|\r)/", $string_users);
 
-        //str_getcsv = parsing string to array
-        $csv = array_map('str_getcsv', file('users.csv'));
-        ?>
-        <form action="" method="post">
-        <table>
-            <tr>
-                <th><?php echo $csv[0][0];?></th>
-                <th><?php echo $csv[0][1];?></th>
-                <th><?php echo $csv[0][2];?></th>
-                <th><?php echo $csv[0][3];?></th>
-                <th><?php echo $csv[0][4];?></th>
-                <th><?php echo $csv[0][5];?></th>
-            </tr>
-        <?php
-        array_shift($csv);
-        $i=0;
-        foreach($csv as $person){
+    $rows_count = count($rows);
+    foreach($rows as $row_id => $row) {
+        $colums = explode(',', $row);
+        $colums_count = count($colums);
+
+        if($row_id == 0) {
             echo '<tr>';
-            $j=0;
-            foreach($person as $item){
-                // echo "<td><input type='text' name='item[".$i."][]' value='".$item."'></td>";
-                $j++;
+            foreach($colums as $col_id => $column) {
+                echo '<th>' . $column . '<input type="hidden" value="' . $column . '" name="fields[' . $row_id . '][' . $col_id . ']"></th>';
             }
-            $i++;
+            echo '</tr>';
+        }else {
+            echo '<tr>';
+            foreach($colums as $col_id => $column) {
+                echo '<td><input type="text" value="' . $column . '" name="fields[' . $row_id . '][' . $col_id . ']"></td>';
+            }
             echo '</tr>';
         }
-        ?>
-        </table>
-        <input type="submit" name="submit" value="submit">
-        </form>
+    }
 
-        <?php
-        //doesn't work yet
-            if(isset($_POST['submit'])){
-                $new_content="";
-                foreach($_POST["item"] as $row){
-                    $new_content .= implode(',', $row);
-                    $new_content .= "\r";
-                }
-            }
-        ?>
+    echo '<tr>';
+    for($col_id = 0; $col_id < $colums_count; $col_id++ ) {
+        echo '<td><input type="text" value="" name="fields[' . $rows_count . '][' . $col_id . ']"></td>';
+    }
+    echo '</tr>';
+
+    ?>
+    </table>
+    <button type="submit" name="save">Opslaan</button>
+</form>
 </body>
 </html>
