@@ -1,0 +1,80 @@
+body { background: #eee; font-family: helvetica, sans-serif; color:#333; line-height: 1.5em; }
+h1 { font-size: 2.5rem; color: hsl(48, 53%, 53%); text-align: center; }
+a { text-decoration: underline; color: hsl(48, 53%, 53%);  }
+a:hover { color: hsl(48, 53%, 70%);  }
+section { max-width: 720px; margin: 0 auto 40px;   }
+section .content {
+     margin: 0 30px; padding: 25px; background: #FFF;
+     position: relative;
+     z-index: 1;
+     top: -80px;
+}
+img { max-width: 100%; height: auto;}
+p { margin: 0 0 25px;}
+
+.articles {
+    display: flex;
+    flex-wrap: wrap;
+}
+.articles a {
+    display: block;
+    border-radius: solid 1px #ddd;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    margin: 0 15px 15px;
+    width: 400px;
+    text-decoration: none;
+    align-items: stretch;
+}
+
+.articles a h3 {
+    padding: 9px 15px;
+    color: hsl(250, 40%, 50%);
+    margin: 0;
+}
+
+.articles a img { max-width: 100%; height: auto;}
+
+.articles a.article-item-add {
+    background: #eee;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.articles a.article-item-add h3 {
+    color: #666;
+    font-size: 2rem;
+}
+.articles a.article-item-add h3 .icon {
+    display: block;
+    font-size: 4rem;
+    line-height: 1em;
+
+}
+
+.articles a:hover {
+    background: hsl(250, 40%, 90%);
+}
+
+form label {
+    display: block;
+    margin: 0 0 15px;
+}
+form input, form textarea {
+    border: solid 1px #aaa;
+    padding: 8px 12px;
+    border-radius: 3px;
+    width: 400px;
+    font-size: 1rem;
+}
+
+textarea{
+    height: 15vh;
+}
+
+button, .btn { display: inline-block; background: #fff; border: solid 1px #aaa; 
+    border-radius: 3px;
+    font-size: 1rem;
+    padding: 8px 12px; line-height: 1em; text-decoration: none;;}
+    button { background: hsl(48, 53%, 50%); color: #fff; }
