@@ -69,9 +69,6 @@
         <a href="index.php" class="btn">Keer terug</a>
 
     </form>
-
-
-
 </section>
 </body>
 </html>
