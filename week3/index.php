@@ -50,32 +50,48 @@ include_once 'functions.php';
         $dir_content = preg_grep('/^([^.])/', scandir(UPLOAD_PATH));
 
         foreach($dir_content as $file){
-            // get filesize of files under ./uploads/
             $extension = pathinfo('./uploads/'. $file);
-            $filesize = filesize('./uploads/'. $file);
+            if(@$extension['extension'] === NULL) {
+                ?>
+                <a href="<?php echo UPLOAD_PATH . "/".$file?>"><div class="file">
+                    <div class="icon icon-<?php echo $extension['extension']; ?>">
+                    <?php     
+                        echo '<span> folder </span>';
+                    ?> 
+                    </div>
+                    <div class="file_info">
+                        <strong><?php echo $file?></strong><br>
+                    </div>
+                </div></a>
+                <?php
+            }
+            else {
+                // get filesize of files under ./uploads/
+                $filesize = filesize('./uploads/'. $file);
 
-            $is_img = in_array($extension['extension'], IMG_EXTENSIONS);
-            ?>
-            <div class="file">
-                <div class="icon icon-<?php echo $extension['extension']; ?>">
-                <?php     
-                if($is_img){
-                    echo '<img src="uploads/'.$file.'">';
-                } else {
-                    echo '<span>' . $extension['extension'] . '</span>';
-                }
-                ?> 
+                $is_img = in_array($extension['extension'], IMG_EXTENSIONS);
+                ?>
+                <div class="file">
+                    <div class="icon icon-<?php echo $extension['extension']; ?>">
+                    <?php     
+                    if($is_img){
+                        echo '<img src="uploads/'.$file.'">';
+                    } else {
+                        echo '<span>' . $extension['extension'] . '</span>';
+                    }
+                    ?> 
+                    </div>
+                    <div class="file_info">
+                        <strong><?php echo $file?></strong><br>
+                        <?php echo human_filesize($filesize) ?>
+                    </div>
+                    <div class="buttons">
+                        <!-- <a href="edit.php?file=license.txt" class="btn" download="">Edit</a> -->
+                        <a href="<?php echo('./uploads/' .$file)?>" class="btn" download="">Download</a>
+                    </div>
                 </div>
-                <div class="file_info">
-                    <strong><?php echo $file?></strong><br>
-                    <?php echo human_filesize($filesize) ?>
-                </div>
-                <div class="buttons">
-                    <!-- <a href="edit.php?file=license.txt" class="btn" download="">Edit</a> -->
-                    <a href="<?php echo('./uploads/' .$file)?>" class="btn" download="">Download</a>
-                </div>
-            </div>
-            <?php
+                <?php
+            }            
         }
     ?>
         <!-- TODO: Maak onderstaande lijst dynamisch -->
