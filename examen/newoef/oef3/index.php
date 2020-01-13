@@ -22,69 +22,52 @@
             die je uiteraard invult met de juiste waarden.
             Herhaal deze opdracht 3x, telkens met een andere soort loop.
             */
+        ?>
 
-            // 1
+        <?php
             foreach ($photos as $photo) {
                 $photo = (object)$photo;
                 ?>
-            
                 <div class="photo">
                     <img src="images/<?php echo $photo->image ?>">
                     <div class="info">
                         <h2><?php echo $photo->user ?></h2>
-                        <span><?php echo date('l, j F Y G:i', strtotime($photo->date)) ?></span>
-                        <span><i class="fal fa-comment"></i> <?php echo $photo->comments ?> <i class="fal fa-thumbs-up"></i> <?php echo $photo->likes ?></span>
+                        <span><?php echo date('l, j F Y G:i' ,strtotime($photo->date)) ?></span>
+                        <span><i class="fal fa-comment"></i> <?php echo $photo->comments ?> <i class="fal fa-thumbs-up"></i> <?php echo $photo->likes ?> </span>
                     </div>
                 </div>
-
                 <?php
             }
 
-            // 2
-            for ($i=0; $i < count($photos); $i++) { 
-                $photo = (object) $photos[$i];
+            for ($i=0; $i < count($photos) ; $i++) { 
                 ?>
-            
                 <div class="photo">
-                    <img src="images/<?php echo $photo->image ?>">
+                    <img src="images/<?php echo $photos[$i]['image'] ?>">
                     <div class="info">
-                        <h2><?php echo $photo->user ?></h2>
-                        <span><?php echo date('l, j F Y G:i', strtotime($photo->date)) ?></span>
-                        <span><i class="fal fa-comment"></i> <?php echo $photo->comments ?> <i class="fal fa-thumbs-up"></i> <?php echo $photo->likes ?></span>
+                        <h2><?php echo $photos[$i]['user'] ?></h2>
+                        <span><?php echo date('l, j F Y G:i' ,strtotime($photos[$i]['date'])) ?></span>
+                        <span><i class="fal fa-comment"></i> <?php echo $photos[$i]['comments'] ?> <i class="fal fa-thumbs-up"></i> <?php echo $photos[$i]['likes'] ?> </span>
                     </div>
                 </div>
-
                 <?php
             }
-
-            // 3
-            $a=0;
-            while ($a < count($photos)) {
-                $photo = (object) $photos[$a];
+            
+            $j=0;
+            while($j < count($photos)){
                 ?>
-            
                 <div class="photo">
-                    <img src="images/<?php echo $photo->image ?>">
+                    <img src="images/<?php echo $photos[$j]['image'] ?>">
                     <div class="info">
-                        <h2><?php echo $photo->user ?></h2>
-                        <span><?php echo date('l, j F Y G:i', strtotime($photo->date)) ?></span>
-                        <span><i class="fal fa-comment"></i> <?php echo $photo->comments ?> <i class="fal fa-thumbs-up"></i> <?php echo $photo->likes ?></span>
+                        <h2><?php echo $photos[$j]['user'] ?></h2>
+                        <span><?php echo date('l, j F Y G:i' ,strtotime($photos[$j]['date'])) ?></span>
+                        <span><i class="fal fa-comment"></i> <?php echo $photos[$j]['comments'] ?> <i class="fal fa-thumbs-up"></i> <?php echo $photos[$j]['likes'] ?> </span>
                     </div>
                 </div>
-
                 <?php
-                $a++;
+                $j++;
             }
-
         ?>
-            <!-- <div class="photo">
-                <img src="images/mercedes-gla.jpg">
-                <div class="info">
-                    <h2>Dieter De Weirdt</h2>
-                    <span>Tuesday, 2 January 2018 15:01</span>
-                    <span><i class="fal fa-comment"></i> 4 <i class="fal fa-thumbs-up"></i> 45</span>
-                </div>
-            </div> -->
+            
         
     </div>
 </body>
